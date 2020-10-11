@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(239, 245, 245) !important;
+    box-sizing: border-box !important;
+}
+.base_nav{
+    height: 100px !important;
+    background-color:rgb(208, 231, 233) !important;
+    /* margin: 20px 0px !important; */
+    padding: 10px 0 !important;
+}
+.main-content{
+    margin: 30px 0 !important;
+    padding: 30px 0 !important;
+}

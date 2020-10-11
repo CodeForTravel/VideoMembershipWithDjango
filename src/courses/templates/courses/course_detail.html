@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block title %} CodeForTravel | Courses Detail  {% endblock %}
+{% block head %}
+<style>
+  h1{
+    font-size: 35px !important;
+  }
+  .des{
+    max-width: 80% !important;
+    padding: 10px 0 !important;
+    margin: 10px 0 !important;
+    font-size: 20px !important;
+  }
+  .column img{
+    width: 450px !important;
+    height: 350px !important;
+  }
+</style>
+{% endblock %}
+
+{% block content %} 
+<div class="ui basic segment">
+  <div class="ui stackable equal width grid">
+    <div class="column">
+      <h1>{{  object.title }}</h1>
+      <div class="des">
+        <p>{{  object.description }}</p>
+      </div>
+    </div>
+    <div class="column">
+      <img src="{{ object.image.url }}" alt="">
+    </div>
+  </div>
+  
+  <div class="ui middle aligned divided selection list">
+  {% for lesson in object.get_lessons %}
+  <a class="item" href="{{ lesson.get_absolute_url }}" >
+    <img class="ui avatar rounded image" src="{{ lesson.thumbnail.url }}"  alt="{{lesson.title}}">
+    
+    <div class="content">
+      <div class="header">{{lesson.title}}</div>
+    </div>
+  </a>
+  <!-- <p><a href="{{ lesson.get_absolute_url }}"> {{lesson.title}} </a></p> -->
+  {% endfor  %}
+</div>
+
+</div>
+
+
+
+
+{% endblock %}
+

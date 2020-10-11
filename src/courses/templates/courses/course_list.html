@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Courses  {% endblock %}
+
+{% block content %} 
+
+    
+    <!-- <a href="{{ course.get_absolute_url }}">{{ course.title }}</a> -->
+    <div class="ui  link three centered cards">
+        {% for course in courses %}
+            {% include 'snippets/card.html' with course=course %}
+        {% endfor %}
+    </div>
+
+    
+
+{% endblock %}
+
+
+
+{% block scripts %}
+<!-- CDN for rating -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.6/components/rating.min.js"></script>
+<script>
+    $('.ui.yellow.rating.read.only').rating('disable');
+</script>
+{% endblock %}

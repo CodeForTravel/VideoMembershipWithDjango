@@ -1,0 +1,16 @@
+<div class="ui card" style="width: 300px;">
+    <a class="image" href="{{ course.get_absolute_url }}" >
+      <img src="{{ course.image.url }}" style="width: 300px; height: 250px;">
+    </a>
+    <div class="content">
+      <a class="header" href="{{ course.get_absolute_url }}">{{ course.title }}</a>
+      <div class="meta">
+        <p>{{ course.description }}</p>
+      </div>
+    </div>
+    <div class="extra content">
+        <span class="ui mini yellow rating read only" data-rating="5" data-max-rating="5"></span>
+        <span>(10)</span>
+    </div>
+
+  </div>

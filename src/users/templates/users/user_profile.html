@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Membership Select {% endblock  %}
+
+{% block content %}
+    <h1>User Profile</h1>
+    <div>
+        {% if user_subscription != None %}
+        <h4>Current Membership : {{ user_membership.membership.membership_type  }}
+            <small>since {{ user_subscription.get_created_date }}</small>
+            {% if user_subscription.active != False %}
+            <h6> Next payment date : {{ user_subscription.get_next_billing_date }}</h6>
+            <a href="{% url 'memberships:cancel_subscription' %}">Cancel Subscription </a>
+            {% else %}
+            <p>You don't have membership plan! Check them out here! 
+                <a href="{% url 'memberships:membership_select' %}">Buy Membership</a>
+            </p>
+            {% endif  %}
+        </h4>
+        {% endif  %}
+    </div>
+{% endblock  %}

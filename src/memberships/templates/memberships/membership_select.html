@@ -1,0 +1,120 @@
+{% extends 'base/base.html' %}
+
+{% block title %} CodeForTravel | Membership plan {% endblock  %}
+
+{% block head %}
+
+<style>
+    h1{
+        text-align: center !important;
+        font-size: 40px !important;
+        text-transform:uppercase !important;
+        letter-spacing: 1px !important;
+        padding: 20px 10px !important;
+        
+    }
+    .card{
+        height: 430px !important;
+        max-width: 270px !important;
+        min-width: 270px !important;
+    }
+    img{
+        width: 270px !important;
+        height: 180px !important;
+    }
+    .header{
+        text-align: center;
+        font-size: 30px !important;
+    }
+    .extra.content{
+        text-align: center !important;
+    }
+    .price{
+        font-size: 45px !important;
+    }
+    .price p{
+        font-size: 15px !important;
+        text-transform:lowercase !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>Membership Plans</h1>
+    {% load static %}
+    <div class="ui stackable centered three cards">
+        <div class="ui centered equal width grid">
+        {% if object_list  %}
+            {% for object in object_list  %}
+            <div class="column">
+
+                <div class="ui card">
+                    <a class="image" href="#">
+                    <img src="{{ object.logo.url }}" alt="{{ object.membership_type }}">
+                    </a>
+                    <div class="content">
+                    <a class="header" href="#">{{ object.membership_type }}</a>
+                    <div class="meta">
+                        <h1 class="price">{{ object.price }} 
+                            <p>/month</p>
+                        </h1>
+                        
+                        
+                    </div>
+                    </div>
+                    <div class="extra content">
+                        {% if object.membership_type != 'Free' %}
+                        <form method="POST" action="{% url 'memberships:membership_select' %}">
+                            {% csrf_token %}
+                            {% if object.membership_type != current_user_membership %}
+                            <button class="ui fluid teal button">Buy Now</button>
+                            {% else  %}
+                            <strong>Current Membership</strong>
+                            {% endif  %}
+                            <input type="hidden" name='membership_type' value="{{ object.membership_type }}">
+                        </form>
+                        {% else %}
+                        <strong>Free Membership</strong>
+                        {% endif  %}
+                    </div>
+                </div>
+
+                <h4>Included Courses</h4>
+                <ul>
+                    {% for course in object.course_set.all %}
+                    <li><a href="{{ course.get_absolute_url }}">{{ course.title }}</a></li>
+                    {% endfor  %}
+                </ul>
+
+            </div>
+            {% endfor  %}
+        {% endif  %}
+    </div>     
+</div>
+    <!-- {% if object_list  %}
+        {% for object in object_list  %}
+            <div>
+                <u><h2>{{ object.membership_type  }}</h2></u>
+                <p>Price : ${{ object.price }} <small>/month</small> </p>
+                <h4>Included Courses</h4>
+                <ul>
+                    {% for course in object.course_set.all %}
+                    <li> > {{ course.title  }}</li>
+                    {% endfor  %}
+                </ul>
+                {% if object.membership_type != 'Free' %}
+                <form method="POST" action="{% url 'memberships:membership_select' %}">
+                    {% csrf_token %}
+                    {% if object.membership_type != current_user_membership %}
+                    <button>Select</button>
+                    {% else  %}
+                    <small>This is your current membership !</small>
+                    {% endif  %}
+                    <input type="hidden" name='membership_type' value="{{ object.membership_type }}">
+                </form>
+                {% endif  %}
+            </div>
+            <br>
+        {% endfor  %}
+    {% endif  %} -->
+{% endblock  %}

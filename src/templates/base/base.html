@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> {% block title %} base title {% endblock %} </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- google font link -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+        
+        {% block head %}
+        {% endblock %}
+
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+        {% include 'base/base_css.html' %}
+    </head>
+    <body>
+        <!-- NAVBAR SECTION -->
+        <!-- ============================================== -->
+        <div class="base_nav">
+            {% include 'nav/navbar.html' %}
+        </div>
+
+        <!-- MESSAGES RENDERING SECTION -->
+        <!-- ============================================== -->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+
+       <!-- MAIN CONTENT SECTION -->
+        <!-- ============================================== -->
+       
+       <div class="main-content">
+            <div class="ui container">
+                {% block content %}
+                {% endblock %}
+            </div>
+       </div>
+       
+            
+       
+       <!-- FOOTER CONTENT SECTION -->
+        <!-- ============================================== -->
+       {% block footer %}
+       {% include 'footer/footer.html' %}
+       {% endblock %}
+
+
+        <!-- Java Script SECTION -->
+        <!-- ============================================== -->
+       {% include 'base/base_js.html' %}
+
+       {% block scripts %}{% endblock %}
+
+
+
+       <script>
+        // JS FOR SCROLLING MENU
+
+        $(window).on('scroll',function(){
+            if($(window).scrollTop()){
+                $('.navbar').addClass('black')
+            }
+            else{
+                $('.navbar').removeClass('black')
+            }
+        });
+    </script>
+    
+    </body>
+</html>

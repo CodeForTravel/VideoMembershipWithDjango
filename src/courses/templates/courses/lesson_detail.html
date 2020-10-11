@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+{% block head %}
+<style>
+    .ui.basic.segment{
+        min-height: 250px !important;
+    }
+</style>
+{% endblock %}
+
+{% block title %} Courses Detail  {% endblock %}
+
+{% block content %} 
+<div class="ui basic segment" >
+{% if lesson is not None %}
+
+    <h2>{{  lesson.title }}</h2>
+    <p>{{ lesson.description }}</p>
+    <video
+    controls controlsList = "nodownload"
+    poster="{{ object.thumbnail.url }}"
+    src="/static{{ object.video_url }}"
+    width="350" height="250"
+    >
+    Sorry your browser doesn't support embedded videos.
+    </video>
+
+    <!-- <img src="{{ lesson.thumbnail.url }}" alt="{{  lesson.title }}" style="height: 400px; width: 350px;">
+    <a href="{{ lesson.video_url }}">Tutorial</a>
+    <p>{{ lesson.video_url }}</p>
+    <video src="{{ lesson.video_url }}"></video> -->
+{% else %}
+    <h5> Ops...!    You do not have subscription for this course!</h5>
+    <u><a href="{% url 'memberships:membership_select' %}">Go for membership plan! </a></u>
+
+{% endif %}
+</div>
+{% endblock %}

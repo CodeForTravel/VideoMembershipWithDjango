@@ -1,0 +1,10 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+h1,h2,h3 {
+    font-family: 'Sansita Swashed', cursive;
+    text-transform:uppercase !important;
+    letter-spacing: 1px !important;
+}

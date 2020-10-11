@@ -1,0 +1,47 @@
+<style>
+    .logo{
+        margin-left: 40px !important;
+    }
+    .logo img{
+    height: 70px !important;
+    width: 80px !important;
+    transition: 00.5s !important;
+    }
+    .black{
+        background: rgba(0, 0, 0, 0.5) !important;
+        height: 80px !important;
+        padding: 10px 30px !important;
+        
+    }
+    .black a{
+        color: white !important;
+    }
+    .black .logo img{
+        height: 60px !important;
+        width: 70px !important;
+    }
+    .ui.container .right.menu{
+        margin-right: 20px !important;
+    }
+</style>
+
+<div class="ui top fixed secondary  menu navbar">
+    <a class="item logo" href="{% url 'users:home' %}">
+        {% load static %}
+        <img src="{% static 'image/mainlogo1.png' %}" alt="">
+    </a>
+    <div class="ui container">
+        
+        <div class="right menu">
+            <a class="item" href="{% url 'courses:course_list' %}">
+                COURSES
+            </a>
+            <a class="item" href="{% url 'memberships:membership_select' %}">
+                MEMBERSHIPS
+            </a>
+            <a class="item">
+            CONTACT
+            </a>
+        </div> 
+    </div>
+</div>
